@@ -1,6 +1,12 @@
+import { useState } from "react";
 import Header from "./Header";
 
 const Login = () => {
+    const [isSignInForm,setSignInForm] = useState(true);
+
+    const toggleSignInForm =()=>{
+        setSignInForm(!isSignInForm);
+    }
   return (
     <div className="relative h-screen w-screen overflow-hidden">
 
@@ -26,7 +32,13 @@ const Login = () => {
           top-10
         "
       >
-        <h1 className="font-bold text-3xl mb-6">Sign In</h1>
+        <h1 className="font-bold text-3xl mb-6">{isSignInForm ? "Sign In" : "Sign Up"}</h1>
+
+        {!isSignInForm && (<input
+        type="Full Name"
+        placeholder="Full Name"
+        className="w-full p-3 my-3 bg-zinc-800 bg-opacity-70 rounded outline-none border border-gray-600 text-white"
+        />)}
 
         <input
           type="text"
@@ -41,7 +53,7 @@ const Login = () => {
         />
 
         <button className="w-full bg-red-600 py-3 my-5 rounded font-semibold hover:bg-red-700">
-          Sign In
+          {isSignInForm ? "SignIn" : "SignUp"}
         </button>
 
         <p className="text-center text-gray-400">OR</p>
@@ -62,9 +74,9 @@ const Login = () => {
         </div>
 
         <p className="mt-4 text-gray-400 text-sm">
-          New to Netflix?{" "}
-          <span className="text-white font-medium cursor-pointer hover:underline">
-            Sign up now.
+
+          <span className="text-white font-medium cursor-pointer hover:underline" onClick={toggleSignInForm}>
+            {isSignInForm ? "New to Netflix? SignUp now" : "Already Registered? SignIn Now"}
           </span>
         </p>
 
