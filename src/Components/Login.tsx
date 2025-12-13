@@ -4,12 +4,19 @@ import { checkValidData } from "../Utils/Validate";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../Utils/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../Utils/userSlice";
 
 const Login = () => {
   const [isSignInForm, setSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -20,30 +27,43 @@ const Login = () => {
       email.current!.value,
       password.current!.value
     );
+
     setErrorMessage(message);
     if (message) return;
 
+    // ================= SIGN UP =================
     if (!isSignInForm) {
-      //signup logic
       createUserWithEmailAndPassword(
         auth,
         email.current!.value,
         password.current!.value
       )
         .then((userCredential) => {
-          // Signed up
-          const user = userCredential.user;
-          console.log(user);
-          // ...
+          return updateProfile(userCredential.user, {
+            displayName: fullname.current!.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          });
+        })
+        .then(() => {
+          const user = auth.currentUser!;
+          const { uid, email, displayName } = user;
+
+          dispatch(
+            addUser({
+              uid,
+              email: email ?? "", // ✅ null safe
+              displayName: displayName ?? "", // ✅ null safe
+            })
+          );
+
+          navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorCode + "--" + errorMessage);
-          // ..
+          setErrorMessage(error.message);
         });
     }
-    //Sign in logic
+
+    // ================= SIGN IN =================
     else {
       signInWithEmailAndPassword(
         auth,
@@ -51,22 +71,28 @@ const Login = () => {
         password.current!.value
       )
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          console.log(user);
-          // ...
+          const { uid, email, displayName } = user;
+
+          dispatch(
+            addUser({
+              uid,
+              email: email ?? "", // ✅ null safe
+              displayName: displayName ?? "", // ✅ null safe
+            })
+          );
+
+          navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          setErrorMessage(errorCode + "--" + errorMessage);
+          setErrorMessage(error.code + " -- " + error.message);
         });
     }
   };
 
   const toggleSignInForm = () => {
     setSignInForm(!isSignInForm);
-    setErrorMessage(null); // Reset error message when toggling
+    setErrorMessage(null);
   };
 
   return (
@@ -101,7 +127,6 @@ const Login = () => {
           {isSignInForm ? "Sign In" : "Sign Up"}
         </h1>
 
-        {/* FULL NAME (only for signup) */}
         {!isSignInForm && (
           <input
             ref={fullname}
@@ -111,7 +136,6 @@ const Login = () => {
           />
         )}
 
-        {/* EMAIL FIELD */}
         <input
           ref={email}
           type="text"
@@ -119,7 +143,6 @@ const Login = () => {
           className="w-full p-3 my-3 bg-zinc-900/60 rounded outline-none border border-gray-600 text-white focus:border-red-600"
         />
 
-        {/* PASSWORD FIELD */}
         <input
           ref={password}
           type="password"
@@ -127,50 +150,43 @@ const Login = () => {
           className="w-full p-3 my-3 bg-zinc-900/60 rounded outline-none border border-gray-600 text-white focus:border-red-600"
         />
 
-        {/* ERROR MESSAGE (Improved CSS) */}
         {errorMessage && (
           <p className="text-red-500 bg-red-500/10 border border-red-600 px-3 py-2 rounded text-sm mt-2 mb-2 text-center">
             {errorMessage}
           </p>
         )}
 
-        {/* MAIN BUTTON */}
         <button
+          onClick={handleButtonClick}
           className="
             w-full bg-red-600 py-3 mt-4 rounded font-semibold 
             hover:bg-red-700 transition active:scale-[0.98]
           "
-          onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
 
-        {/* OR DIVIDER */}
         <div className="flex items-center justify-center gap-2 text-gray-400 my-4">
           <span className="bg-gray-700 h-[1px] w-16"></span>
           OR
           <span className="bg-gray-700 h-[1px] w-16"></span>
         </div>
 
-        {/* SIGN-IN CODE BUTTON */}
         <button className="w-full bg-gray-500 bg-opacity-40 py-3 mb-3 rounded font-semibold hover:bg-gray-400/60 transition">
           Use a sign-in code
         </button>
 
-        {/* FORGOT PASSWORD */}
         <div className="text-center">
           <a className="text-blue-400 text-sm cursor-pointer hover:underline">
             Forgot password?
           </a>
         </div>
 
-        {/* REMEMBER ME */}
         <div className="flex items-center text-sm mt-4 gap-2">
           <input type="checkbox" className="accent-red-600" />
           <label>Remember me</label>
         </div>
 
-        {/* SIGN UP TOGGLE */}
         <p className="mt-4 text-gray-300 text-sm">
           <span
             className="text-white font-medium cursor-pointer hover:underline"
@@ -182,7 +198,6 @@ const Login = () => {
           </span>
         </p>
 
-        {/* RECAPTCHA TEXT */}
         <p className="text-xs text-gray-400 mt-4 leading-5">
           This page is protected by Google reCAPTCHA to ensure you're not a bot.{" "}
           <span className="text-blue-400 cursor-pointer hover:underline">
