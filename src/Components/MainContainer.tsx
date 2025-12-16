@@ -1,8 +1,11 @@
+import VideoBackground from "./VideoBackground";
+import VideoTitle from "./VideoTitle";
 
 const MainContainer = () => {
   return (
     <div>
-      <h1>main</h1>
+   <VideoTitle/>
+   <VideoBackground/>
     </div>
   )
 }
