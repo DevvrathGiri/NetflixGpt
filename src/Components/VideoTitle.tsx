@@ -5,9 +5,12 @@ type Props = {
 
 const VideoTitle = ({ title, overview }: Props) => {
   return (
-    <div className="absolute top-0 left-0 w-full h-full 
-                    bg-gradient-to-r from-black via-black/70 to-transparent">
-      
+    <div
+      className="
+        absolute inset-0 z-10
+        bg-gradient-to-r from-black/70 via-black/30 to-transparent
+      "
+    >
       <div className="pt-[18%] px-12 md:px-24 max-w-[700px] text-white">
         
         {/* Title */}
@@ -23,19 +26,23 @@ const VideoTitle = ({ title, overview }: Props) => {
         {/* Buttons */}
         <div className="mt-6 flex gap-4">
           <button
-            className="flex items-center gap-2 
-                       bg-white text-black px-6 py-2 
-                       text-sm md:text-lg font-semibold 
-                       rounded hover:bg-gray-300 transition"
+            className="
+              flex items-center gap-2
+              bg-white text-black px-6 py-2
+              text-sm md:text-lg font-semibold
+              rounded hover:bg-gray-300 transition
+            "
           >
             ▶ Play
           </button>
 
           <button
-            className="flex items-center gap-2 
-                       bg-gray-500/70 text-white px-6 py-2 
-                       text-sm md:text-lg font-semibold 
-                       rounded hover:bg-gray-500 transition"
+            className="
+              flex items-center gap-2
+              bg-gray-500/70 text-white px-6 py-2
+              text-sm md:text-lg font-semibold
+              rounded hover:bg-gray-500 transition
+            "
           >
             ℹ More Info
           </button>
