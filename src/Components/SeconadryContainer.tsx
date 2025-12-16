@@ -6,4 +6,4 @@ const SeconadryContainer = () => {
   )
 }
 
-export default SeconadryContainer
+export default SeconadryContainer;
