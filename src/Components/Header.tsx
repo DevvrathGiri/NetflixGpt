@@ -24,7 +24,7 @@ const Header = () => {
 
         dispatch(
           addUser({
-            uid,
+            uid:uid,
             email: email ?? "", // ✅ null safe
             displayName: displayName ?? "", // ✅ null safe
           })
