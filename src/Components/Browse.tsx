@@ -3,6 +3,7 @@ import usePopularMovies from "../Hooks/usePopularMovies";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SeconadryContainer from "./SeconadryContainer";
+import GptSearch from "./GptSearch"
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -11,6 +12,7 @@ const Browse = () => {
   return (
     <>
       <Header />
+      |<GptSearch/>
       <MainContainer />
       <SeconadryContainer />
     </>
