@@ -25,17 +25,14 @@ const MovieList = ({ title, movies }: MovieListProps) => {
     });
   };
 
-  // 🔥 HARD BLOCK vertical scroll
+  // ✅ FIXED: NO preventDefault (removes warning)
   const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
     if (!scrollRef.current) return;
-
-    e.preventDefault();        // stop default
-    e.stopPropagation();       // stop bubbling
     scrollRef.current.scrollLeft += e.deltaY;
   };
 
   return (
-    <div className="relative px-6 py-5">
+    <div className="relative px-6 py-5 group">
       {/* TITLE */}
       <h2 className="text-white text-xl md:text-2xl font-semibold mb-4">
         {title}
@@ -71,10 +68,10 @@ const MovieList = ({ title, movies }: MovieListProps) => {
         ›
       </button>
 
-      {/* 🔥 SCROLL ROW */}
+      {/* MOVIE ROW */}
       <div
         ref={scrollRef}
-        onWheelCapture={handleWheel}
+        onWheel={handleWheel}
         className="
           flex gap-4
           overflow-x-auto
@@ -82,8 +79,8 @@ const MovieList = ({ title, movies }: MovieListProps) => {
           flex-nowrap
           scrollbar-hide
           scroll-smooth
-          overscroll-x-contain   /* 🔥 IMPORTANT */
-          overscroll-y-none      /* 🔥 IMPORTANT */
+          overscroll-x-contain
+          overscroll-y-none
         "
       >
         {movies.map((movie) => (
