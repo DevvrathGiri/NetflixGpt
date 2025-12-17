@@ -5,6 +5,7 @@ interface MovieCardProps {
 }
 
 const MovieCard = ({ posterPath }: MovieCardProps) => {
+  if(!posterPath) return null;
   return (
     <div
       className="
