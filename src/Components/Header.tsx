@@ -7,13 +7,13 @@ import { addUser, removeUser } from "../Utils/userSlice";
 import { useSelector } from "react-redux";
 import type { RootState } from "../Utils/appStore";
 import { toggleGptSearchView } from "../Utils/gptSlice";
-
+import { changeLanguage } from "../Utils/configSlice";
+import type { LanguageKey } from "../Utils/languageConstants";
 
 const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store: RootState) => store.user);
-
 
   const handleSignOut = () => {
     signOut(auth)
@@ -40,9 +40,15 @@ const Header = () => {
     });
   }, [dispatch, navigate]);
 
-  const handleGptSearchClick = () =>{
-dispatch(toggleGptSearchView());
-  }
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearchView());
+  };
+  const handleLanguageChange = (
+  e: React.ChangeEvent<HTMLSelectElement>
+) => {
+  dispatch(changeLanguage(e.target.value as LanguageKey));
+};
+
 
   return (
     <header
@@ -63,26 +69,53 @@ dispatch(toggleGptSearchView());
 
       {user && (
         <div className="flex p-2">
-          <button className="
+          <select
+            className="
+    bg-black/70 backdrop-blur-md
+    text-white font-semibold
+    px-4 py-2 rounded-lg
+    border border-red-600
+    cursor-pointer
+    focus:outline-none focus:ring-2 focus:ring-red-600
+    hover:bg-black/90
+    transition`
+  " onChange={handleLanguageChange}
+          >
+            <option value="en" className="bg-black text-white">
+              English
+            </option>
+            <option value="hindi" className="bg-black text-white">
+              Hindi
+            </option>
+            <option value="spanish" className="bg-black text-white">
+              Spanish
+            </option>
+          </select>
+
+          <button
+            className="
           bg-red-600 hover:bg-red-700
           text-white font-semibold
           px-4 py-2 rounded
           transition 
-        " onClick={handleGptSearchClick}>GPT Search</button>
-      <button
-        onClick={handleSignOut}
-        className="
+        "
+            onClick={handleGptSearchClick}
+          >
+            GPT Search
+          </button>
+          <button
+            onClick={handleSignOut}
+            className="
           bg-red-600 hover:bg-red-700
           text-white font-semibold
           px-4 py-2 rounded
           transition
         "
-      >
-        Sign Out
-      </button>
+          >
+            Sign Out
+          </button>
         </div>
       )}
-     
     </header>
   );
 };

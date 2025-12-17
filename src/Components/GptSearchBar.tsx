@@ -1,4 +1,9 @@
+import { useSelector } from "react-redux";
+import {lang} from "../Utils/languageConstants";
+import type { RootState } from "../Utils/appStore";
+
 const GptSearchBar = () => {
+    const langkey = useSelector((store:RootState)=>store.config.lang);
   return (
     <div className="flex justify-center">
       <form
@@ -19,7 +24,7 @@ const GptSearchBar = () => {
             outline-none
             focus:ring-2 focus:ring-red-600
           "
-          placeholder="What would you like to watch today?"
+          placeholder={lang[langkey].gptSearchPlaceholder}
         />
 
         <button
@@ -30,7 +35,7 @@ const GptSearchBar = () => {
             transition
           "
         >
-          Search
+         {lang[langkey].search}
         </button>
       </form>
     </div>
