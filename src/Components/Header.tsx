@@ -14,6 +14,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((store: RootState) => store.user);
+  const showGptSearch = useSelector((store:RootState)=> store.gpt.showGptSearch)
 
   const handleSignOut = () => {
     signOut(auth)
@@ -69,7 +70,7 @@ const Header = () => {
 
       {user && (
         <div className="flex p-2">
-          <select
+         {showGptSearch &&( <select
             className="
     bg-black/70 backdrop-blur-md
     text-white font-semibold
@@ -90,7 +91,7 @@ const Header = () => {
             <option value="spanish" className="bg-black text-white">
               Spanish
             </option>
-          </select>
+          </select>)}
 
           <button
             className="
@@ -101,7 +102,7 @@ const Header = () => {
         "
             onClick={handleGptSearchClick}
           >
-            GPT Search
+            {showGptSearch ? "HomePage" : "GptSearch"}
           </button>
           <button
             onClick={handleSignOut}
