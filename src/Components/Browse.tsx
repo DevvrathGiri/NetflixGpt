@@ -4,18 +4,20 @@ import Header from "./Header";
 import MainContainer from "./MainContainer";
 import SeconadryContainer from "./SeconadryContainer";
 import GptSearch from "./GptSearch"
+import { useSelector } from "react-redux";
+import type { RootState } from "../Utils/appStore";
 
 const Browse = () => {
+  const showGptSearch = useSelector((store:RootState)=>store.gpt.showGptSearch);
   useNowPlayingMovies();
   usePopularMovies();
 
   return (
-    <>
+  <div>
       <Header />
-      |<GptSearch/>
-      <MainContainer />
-      <SeconadryContainer />
-    </>
+      {showGptSearch ?(<GptSearch/>):(<><MainContainer />
+      <SeconadryContainer /></>)}
+  </div>
   );
 };
 
