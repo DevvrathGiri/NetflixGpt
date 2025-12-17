@@ -1,1 +1,15 @@
 @import "tailwindcss";
+/* Netflix-style scroll control */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 🔥 BLOCK SCROLL CHAINING */
+.no-vertical-scroll {
+  overscroll-behavior-y: none;
+}

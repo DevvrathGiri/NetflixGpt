@@ -11,10 +11,10 @@ const VideoTitle = ({ title, overview }: Props) => {
         bg-gradient-to-r from-black/70 via-black/30 to-transparent
       "
     >
-      <div className="pt-[18%] px-12 md:px-24 max-w-[700px] text-white">
+      <div className="pt-[16%] px-12 md:px-24 max-w-[700px] text-white">
         
         {/* Title */}
-        <h1 className="text-3xl md:text-6xl font-extrabold leading-tight">
+        <h1 className="text-xl md:text-5xl font-extrabold leading-tight">
           {title}
         </h1>
 
