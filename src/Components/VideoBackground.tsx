@@ -13,17 +13,28 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <iframe
-        className="
-          absolute top-1/2 left-1/2
-          w-screen h-screen
-          -translate-x-1/2 -translate-y-1/2
-          scale-[1.35]
-        "
-        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}&modestbranding=1`}
-        allow="autoplay; fullscreen"
-        title="Trailer"
-      />
+      {/* Aspect-ratio container */}
+      <div className="absolute inset-0">
+        <iframe
+          className="
+            absolute
+            top-1/2 left-1/2
+            -translate-x-1/2 -translate-y-1/2
+
+            w-[100vw]
+            h-[120vh]        /* 🔥 KEY FIX for mobile */
+            md:h-[100vh]
+
+            scale-[1.2]
+            md:scale-[1.35]
+
+            pointer-events-none
+          "
+          src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}&modestbranding=1&rel=0`}
+          allow="autoplay; fullscreen"
+          title="Trailer"
+        />
+      </div>
     </div>
   );
 };
