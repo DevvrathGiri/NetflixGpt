@@ -1,68 +1,93 @@
-type Props = {
+interface VideoTitleProps {
   title: string;
   overview: string;
-};
+}
 
-const VideoTitle = ({ title, overview }: Props) => {
+const VideoTitle = ({ title, overview }: VideoTitleProps) => {
   return (
-    <div
-      className="
-        absolute inset-0 z-10
-        bg-gradient-to-r from-black/70 via-black/30 to-transparent
-      "
-    >
-      {/* 🔥 CONTENT OVER VIDEO */}
+    <>
+      {/* Mobile layout */}
       <div
         className="
-          absolute
-          left-6 md:left-16
-          bottom-30 md:bottom-32
-          max-w-[90%] md:max-w-[700px]
-          text-white
+          absolute inset-x-4 bottom-6
+          flex flex-col gap-3
+          text-white sm:hidden
         "
       >
-        {/* TITLE */}
-        <h1 className="text-2xl md:text-5xl font-extrabold leading-tight">
+        <h1 className="text-2xl font-extrabold leading-tight drop-shadow-lg">
           {title}
         </h1>
 
-        {/* DESCRIPTION */}
-        <p className="mt-3 md:mt-4 text-sm md:text-lg text-gray-200 line-clamp-3">
+        <p className="text-sm text-neutral-200/90 line-clamp-3">
           {overview}
         </p>
 
-        {/* BUTTONS */}
-        <div className="mt-5 flex gap-4">
+        <div className="flex gap-2">
           <button
             className="
-              flex items-center gap-2
-              bg-white text-black
-              px-5 md:px-6 py-2
-              text-sm md:text-lg font-semibold
-              rounded
-              hover:bg-gray-300
-              transition
+              flex-1 flex items-center justify-center gap-2
+              bg-white text-black font-semibold
+              py-2 rounded-md text-sm
             "
           >
             ▶ Play
           </button>
-
           <button
             className="
-              flex items-center gap-2
-              bg-gray-500/70 text-white
-              px-5 md:px-6 py-2
-              text-sm md:text-lg font-semibold
-              rounded
-              hover:bg-gray-500
-              transition
+              flex-1 flex items-center justify-center gap-2
+              bg-neutral-700/80 text-white font-semibold
+              py-2 rounded-md text-sm
             "
           >
-            ℹ More Info
+            ✔ My List
           </button>
         </div>
       </div>
-    </div>
+
+      {/* Tablet / Desktop layout */}
+      <div
+        className="
+          hidden sm:block
+          absolute bottom-16 sm:bottom-14 md:bottom-20
+          left-6 sm:left-10 md:left-16
+          max-w-xl md:max-w-2xl lg:max-w-3xl
+          text-white
+        "
+      >
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-tight drop-shadow-[0_8px_25px_rgba(0,0,0,0.9)]">
+          {title}
+        </h1>
+
+        <p className="mt-4 text-sm md:text-lg lg:text-xl text-neutral-200 max-w-xl md:max-w-2xl line-clamp-4 drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)]">
+          {overview}
+        </p>
+
+        <div className="mt-6 flex gap-3">
+          <button
+            className="
+              flex items-center gap-3
+              px-6 md:px-8 py-2.5 md:py-3
+              bg-white text-black font-bold
+              rounded-md md:rounded-lg text-sm md:text-lg
+              hover:bg-neutral-100 transition
+            "
+          >
+            ▶ Play
+          </button>
+          <button
+            className="
+              flex items-center gap-3
+              px-6 md:px-7 py-2.5 md:py-3
+              bg-neutral-700/80 text-white font-semibold
+              rounded-md md:rounded-lg text-sm md:text-lg
+              hover:bg-neutral-600/80 transition
+            "
+          >
+            ✔ My List
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 

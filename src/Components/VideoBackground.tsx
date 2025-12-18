@@ -7,34 +7,33 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
     (store: RootState) => store.movies.trailerVideo
   );
 
+  // TMDB se trailer fetch
   useMovieTrailer(movieId);
 
+  // jab tak trailer nahi aata, kuch mat dikhao
   if (!trailerVideo) return null;
 
+  const YT_ID = trailerVideo.key;
+
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Aspect-ratio container */}
-      <div className="absolute inset-0">
-        <iframe
-          className="
-            absolute
-            top-1/2 left-1/2
-            -translate-x-1/2 -translate-y-1/2
-
-            w-[100vw]
-            h-[120vh]        /* 🔥 KEY FIX for mobile */
-            md:h-[100vh]
-
-            scale-[1.2]
-            md:scale-[1.35]
-
-            pointer-events-none
-          "
-          src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}&modestbranding=1&rel=0`}
-          allow="autoplay; fullscreen"
-          title="Trailer"
-        />
-      </div>
+    <div className="absolute inset-0 -z-10 overflow-hidden">
+      <iframe
+        className="
+          absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+          w-[140vw] sm:w-[130vw] md:w-[115vw]
+          h-[110vh] sm:h-[105vh] md:h-[100vh]
+          scale-110 sm:scale-120 md:scale-[1.25]
+          pointer-events-none
+        "
+         src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&controls=0&loop=1&playlist=${trailerVideo.key}&modestbranding=1&rel=0&disablekb=1`}
+        title="Movie trailer"
+        allow="autoplay; fullscreen; encrypted-media"
+        allowFullScreen
+      />
+      {/* gradients yahi rakho, ye autoplay ko affect nahi karte */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-black/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black/80" />
     </div>
   );
 };
