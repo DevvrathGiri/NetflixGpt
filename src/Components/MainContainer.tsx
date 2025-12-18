@@ -13,13 +13,11 @@ const MainContainer = () => {
   const { id, original_title = "", overview = "" } = movies[0];
 
   return (
-    <section className="
-      relative w-full h-screen md:h-[100vh] overflow-hidden
-      bg-gradient-to-b from-black via-neutral-500/5 to-black
-    ">
-      <VideoBackground movieId={id} />
-      <VideoTitle title={original_title} overview={overview} />
-    </section>
+   <section className="relative w-full h-[100dvh] md:h-[100vh] overflow-hidden">
+  <VideoBackground movieId={id} />
+  <VideoTitle title={original_title} overview={overview} />
+</section>
+
   );
 };
 
