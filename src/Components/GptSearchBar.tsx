@@ -12,6 +12,24 @@ const GptSearchBar = () => {
   const searchText = useRef<HTMLTextAreaElement>(null);
   const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
 
+  // 🔥 Language + device ke hisaab se placeholder
+  const getPlaceholder = () => {
+    if (langkey === "hindi") {
+      return isMobile
+        ? "Movie ya genre search karein"
+        : "Aaj kya dekhna chahoge?";
+    }
+    if (langkey === "spanish") {
+      return isMobile
+        ? "Busca películas o géneros"
+        : "¿Qué te gustaría ver hoy?";
+    }
+    // default English
+    return isMobile
+      ? "Search movies or genres"
+      : "Search for a movie, series or genre";
+  };
+
   const searchMovieTMDB = async (movie: string) => {
     const cleanedMovie = movie.trim();
     const data = await fetch(
@@ -74,11 +92,7 @@ const GptSearchBar = () => {
             py-1.5 md:py-2
             outline-none
           "
-          placeholder={
-            isMobile
-              ? "Search movies or genres"
-              : "Search for a movie, series or genre"
-          }
+          placeholder={getPlaceholder()}
         />
 
         <button

@@ -13,8 +13,6 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
   // jab tak trailer nahi aata, kuch mat dikhao
   if (!trailerVideo) return null;
 
-  const YT_ID = trailerVideo.key;
-
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
       <iframe
@@ -30,10 +28,6 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
         allow="autoplay; fullscreen; encrypted-media"
         allowFullScreen
       />
-      {/* gradients yahi rakho, ye autoplay ko affect nahi karte */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-transparent to-black/45" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/25 to-black/80" />
     </div>
   );
 };
