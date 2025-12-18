@@ -9,8 +9,8 @@ const VideoTitle = ({ title, overview }: VideoTitleProps) => {
       {/* Mobile layout */}
       <div
         className="
-          absolute inset-x-0 bottom-50
-          flex flex-col gap-1
+          absolute bottom-90
+          flex flex-col gap-2
           text-white sm:hidden
         "
       >

@@ -8,13 +8,13 @@ const SeconadryContainer = () => {
   return (
     <div
       className="
-        relative z-10
+        relative z-30
         bg-gradient-to-b from-black via-neutral-900 to-black
-        pt-10 md:pt-16 lg:pt-20
+        pt-0 md:pt-16 lg:pt-20
         pb-20 md:pb-28
 
-        -mt-[200px] md:-mt-0   /* 👈 MOBILE OVERLAP */
-        overflow-hidden
+        -mt-[340px] md:-mt-0   /* 👈 MOBILE OVERLAP */
+        
       "
     >
       <div className="space-y-0">

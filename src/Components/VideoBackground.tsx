@@ -18,7 +18,7 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
   <iframe
     className="
       absolute
-      -top-80 md:top-1/2
+      -top-90 md:top-1/2
       left-1/2
       -translate-x-1/2
       md:-translate-y-1/2
