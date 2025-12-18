@@ -9,7 +9,12 @@ import { addGptMovieresult } from "../Utils/gptSlice";
 const GptSearchBar = () => {
   const dispatch = useDispatch();
   const langkey = useSelector((store: RootState) => store.config.lang);
-  const searchText = useRef<HTMLInputElement>(null);
+
+  // ✅ textarea ke liye correct ref type
+  const searchText = useRef<HTMLTextAreaElement>(null);
+
+  // ✅ mobile check
+  const isMobile = window.innerWidth < 768;
 
   const searchMovieTMDB = async (movie: string) => {
     const cleanedMovie = movie.trim();
@@ -31,15 +36,19 @@ const GptSearchBar = () => {
     try {
       const query = searchText.current.value;
       const movies = await callGemini(query);
-      console.log("Gemini Movie Results:", movies);
       const gptMovies = movies.split(",");
+
       const promiseArray = gptMovies.map((movie: string) =>
         searchMovieTMDB(movie)
       );
+
       const tmdbResults = await Promise.all(promiseArray);
-      console.log(tmdbResults);
+
       dispatch(
-        addGptMovieresult({ movieNames: gptMovies, movieResults: tmdbResults })
+        addGptMovieresult({
+          movieNames: gptMovies,
+          movieResults: tmdbResults,
+        })
       );
     } catch (error) {
       console.error("Gemini API Error:", error);
@@ -50,49 +59,60 @@ const GptSearchBar = () => {
     <div className="flex justify-center px-4">
       <form
         className="
-          w-full max-w-2xl
-          flex items-center gap-3
+          w-full
+          md:w-[75vw] lg:w-[70vw] xl:w-[65vw]
+          max-w-none
+          flex items-center gap-4
           bg-black/60 backdrop-blur-xl
           border border-white/10
-          p-3 md:p-4 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.6)]
+          px-5 py-3
+          rounded-2xl
+          shadow-[0_10px_40px_rgba(0,0,0,0.6)]
         "
         onSubmit={(e) => e.preventDefault()}
       >
-        <input
+        <textarea
           ref={searchText}
-          type="text"
+          rows={1}
           className="
             flex-1
-            px-4 py-2.5 md:py-3
+            resize-none
+            overflow-hidden
+            px-4 md:px-5
+            py-2.5 md:py-3
             rounded-xl
             bg-white/5 text-white
             placeholder-gray-400
+            text-base md:text-lg
+            leading-snug
             outline-none
             border border-transparent
-            focus:border-red-500 focus:ring-2 focus:ring-red-500/70
-            transition
+            focus:border-red-500
+            focus:ring-2 focus:ring-red-500/60
           "
-          placeholder={lang[langkey].gptSearchPlaceholder}
+          placeholder={
+            isMobile
+              ? "Search movies"
+              : "What would you like to watch today?"
+          }
         />
 
         <button
           type="button"
           onClick={handleGptSearchClick}
           className="
-            inline-flex items-center justify-center gap-2
-            bg-gradient-to-r from-red-500 via-red-600 to-red-700
-            px-5 md:px-6 py-2.5 md:py-3
+            shrink-0
+            px-4 md:px-7
+            py-2.5 md:py-3
             rounded-xl
-            text-sm md:text-base font-semibold text-white
+            bg-gradient-to-r from-red-500 via-red-600 to-red-700
+            text-white font-semibold
             shadow-lg shadow-red-500/40
-            transition duration-200
-            hover:from-red-400 hover:via-red-500 hover:to-red-600
-            hover:-translate-y-0.5 hover:shadow-red-500/70
+            hover:brightness-110
             active:scale-95
           "
         >
-          <span className="hidden md:inline-block">🎬</span>
-          <span>{lang[langkey].search}</span>
+          🎬 Search
         </button>
       </form>
     </div>

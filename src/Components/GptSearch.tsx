@@ -20,6 +20,7 @@ const GptSearch = () => {
           from-black/40
           via-black/60
           to-black/90
+          
           backdrop-blur-[2px]
           -z-20
         "
