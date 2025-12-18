@@ -7,42 +7,36 @@ const VideoTitle = ({ title, overview }: VideoTitleProps) => {
   return (
     <>
       {/* Mobile layout */}
-      <div
-        className="
-          absolute bottom-90
-          flex flex-col gap-2
-          text-white sm:hidden
-        "
-      >
-        <h1 className="text-2xl font-extrabold leading-tight drop-shadow-lg">
-          {title}
-        </h1>
+  <div
+  className="
+    absolute bottom-100
+    left-4 right-4
+    flex flex-col gap-2
+   text-red-400
+    sm:hidden
+    z-20
+  "
+>
+  <h1 className="text-xl font-bold leading-snug ">
+    {title}
+  </h1>
 
-        <p className=" line-clamp-3">
-          {overview}
-        </p>
+  <p className="text-sm text-red-400 line-clamp-1">
+    {overview}
+  </p>
 
-        <div className="flex gap-2">
-          <button
-            className="
-              flex-1 flex items-center justify-center gap-2
-              bg-white text-black font-semibold
-              py-2 rounded-md text-sm
-            "
-          >
-            ▶ Play
-          </button>
-          <button
-            className="
-              flex-1 flex items-center justify-center gap-2
-              bg-neutral-700/80 text-white font-semibold
-              py-2 rounded-md text-sm
-            "
-          >
-            ✔ My List
-          </button>
-        </div>
-      </div>
+  <div className="flex gap-3 mt-2">
+    <button className="flex-1 bg-red-500 text-white py-2 rounded-md text-sm font-semibold">
+      ▶ Play
+    </button>
+
+    <button className="flex-1 bg-red-500 text-white py-2 rounded-md text-sm">
+      ✔ My List
+    </button>
+  </div>
+</div>
+
+
 
       {/* Tablet / Desktop layout */}
       <div
