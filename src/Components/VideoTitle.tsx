@@ -9,10 +9,10 @@ const VideoTitle = ({ title, overview }: VideoTitleProps) => {
       {/* Mobile layout */}
   <div
   className="
-    absolute bottom-100
+    absolute bottom-95
     left-4 right-4
     flex flex-col gap-2
-   text-red-400
+   text-white
     sm:hidden
     z-20
   "
@@ -21,16 +21,16 @@ const VideoTitle = ({ title, overview }: VideoTitleProps) => {
     {title}
   </h1>
 
-  <p className="text-sm text-red-400 line-clamp-1">
+  <p className="text-sm text-white line-clamp-2">
     {overview}
   </p>
 
   <div className="flex gap-3 mt-2">
-    <button className="flex-1 bg-red-500 text-white py-2 rounded-md text-sm font-semibold">
+    <button className="flex-1 bg-white text-black py-2 rounded-md text-sm font-semibold">
       ▶ Play
     </button>
 
-    <button className="flex-1 bg-red-500 text-white py-2 rounded-md text-sm">
+    <button className="flex-1 bg-gray-800 text-white py-2 rounded-md text-sm">
       ✔ My List
     </button>
   </div>

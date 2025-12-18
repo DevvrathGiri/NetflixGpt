@@ -12,7 +12,7 @@ const SeconadryContainer = () => {
     bg-gradient-to-b from-black via-neutral-900 to-black
     pt-6 md:pt-16 lg:pt-20
     pb-20 md:pb-28
-    -mt-[400px] md:-mt-0
+    -mt-[380px] md:-mt-0
   "
 >
   {/* soft top blend */}
