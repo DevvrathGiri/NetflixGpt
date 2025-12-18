@@ -28,6 +28,7 @@ const VideoBackground = ({ movieId }: { movieId: number }) => {
         allow="autoplay; fullscreen; encrypted-media"
         allowFullScreen
       />
+     
     </div>
   );
 };

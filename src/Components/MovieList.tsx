@@ -41,7 +41,7 @@ const MovieList = ({ title, movies }: MovieListProps) => {
       <h2 className="
         text-xl sm:text-2xl md:text-3xl lg:text-3.5xl font-bold text-white
         mb-4 md:mb-6 pl-1 md:pl-2 pb-1
-        bg-gradient-to-r from-white to-neutral-200 bg-clip-text text-transparent
+        bg-gradient-to-r from-white to-neutral-200 bg-clip-text 
         drop-shadow-lg
       ">
         {title}

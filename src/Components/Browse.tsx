@@ -6,11 +6,15 @@ import SeconadryContainer from "./SeconadryContainer";
 import GptSearch from "./GptSearch"
 import { useSelector } from "react-redux";
 import type { RootState } from "../Utils/appStore";
+import useTopRatedMovies from "../Hooks/useTopRatedMovies";
+import useUpcomingMovies from "../Hooks/useUpcomingMovies";
 
 const Browse = () => {
   const showGptSearch = useSelector((store:RootState)=>store.gpt.showGptSearch);
   useNowPlayingMovies();
   usePopularMovies();
+  useTopRatedMovies();
+  useUpcomingMovies();
 
   return (
   <div>

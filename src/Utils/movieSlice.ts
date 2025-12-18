@@ -20,6 +20,8 @@ interface TrailerVideo {
 interface MoviesState {
   nowPlayingMovies: Movie[];
   popularMovies:Movie[];
+  topRatedMovies:Movie[];
+  upcomingMovies:Movie[];
   trailerVideo: TrailerVideo | null;
 }
 
@@ -28,6 +30,8 @@ interface MoviesState {
 const initialState: MoviesState = {
   nowPlayingMovies: [],
   popularMovies:[],
+  topRatedMovies:[],
+  upcomingMovies:[],
   trailerVideo: null,
 };
 
@@ -49,6 +53,18 @@ const moviesSlice = createSlice({
     ) => {
       state.popularMovies = action.payload;
     },
+    addTopRatedMovies: (
+      state,
+      action: PayloadAction<Movie[]>
+    ) => {
+      state.topRatedMovies = action.payload;
+    },
+    addUpcomingMovies: (
+      state,
+      action: PayloadAction<Movie[]>
+    ) => {
+      state.upcomingMovies = action.payload;
+    },
     addTrailerVideo: (
       state,
       action: PayloadAction<TrailerVideo>
@@ -58,5 +74,5 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { addNowPlayingMovies, addTrailerVideo,addPopularMovies } = moviesSlice.actions;
+export const { addNowPlayingMovies, addTrailerVideo,addPopularMovies,addTopRatedMovies,addUpcomingMovies } = moviesSlice.actions;
 export default moviesSlice.reducer;

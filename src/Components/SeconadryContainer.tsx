@@ -14,9 +14,9 @@ const SeconadryContainer = () => {
     ">
       <div className="space-y-0">
         <MovieList title="📽️ Now Playing" movies={movies.nowPlayingMovies || []} />
-        <MovieList title="🔥 Trending Now" movies={movies.nowPlayingMovies || []} />
+        <MovieList title="🔥 Top Rated" movies={movies.topRatedMovies || []} />
         <MovieList title="⭐ Popular" movies={movies.popularMovies || []} />
-        <MovieList title="👻 Horror" movies={movies.nowPlayingMovies || []} />
+        <MovieList title="👻 UpComing" movies={movies.upcomingMovies || []} />
         <MovieList title="⏰ Recent Releases" movies={movies.nowPlayingMovies || []} />
       </div>
     </div>
