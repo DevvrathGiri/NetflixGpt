@@ -1,73 +1,128 @@
-# React + TypeScript + Vite
+🚀 Project Overview
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Netflix Clone is a frontend-focused web application that allows users to explore movies across different categories such as Now Playing, Popular, Top Rated, and Upcoming.
+It integrates real movie data using the TMDB API and provides an immersive, responsive user experience similar to Netflix.
 
-Currently, two official plugins are available:
+✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🎥 Browse movies by categories (Now Playing, Popular, Top Rated, Upcoming)
 
-## React Compiler
+▶️ Watch movie trailers in the background
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔍 AI-powered movie search (GPT-based)
 
-## Expanding the ESLint configuration
+🌐 Multi-language support
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+📱 Fully responsive (Mobile, Tablet & Desktop)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+⚡ Fast and optimized UI
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🔐 Authentication with Firebase
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🧠 State management using Redux Toolkit
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🛠️ Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Frontend
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React.js
+
+TypeScript
+
+Tailwind CSS
+
+Redux Toolkit
+
+Backend / Services
+
+Firebase Authentication
+
+TMDB API
+
+OpenAI / Gemini / Grok API (for AI search)
+
+Tools
+
+Vite
+
+Git & GitHub
+
+📁 Folder Structure
+src/
+│── Components/
+│── Hooks/
+│── Utils/
+│── Store/
+│── Pages/
+│── constants/
+│── App.tsx
+│── main.tsx
+
+⚙️ Installation & Setup
+
+Clone the repository:
+
+git clone https://github.com/your-username/netflix-clone.git
+
+
+Navigate to the project folder:
+
+cd netflix-clone
+
+
+Install dependencies:
+
+npm install
+
+▶️ Run the Project Locally
+npm run dev
+
+
+The app will start on:
+
+http://localhost:5173
+
+🔑 Environment Variables
+
+Create a .env file in the root directory and add:
+
+VITE_TMDB_API_KEY=your_tmdb_api_key
+VITE_FIREBASE_API_KEY=your_firebase_key
+VITE_OPENAI_API_KEY=your_ai_api_key
+
+
+⚠️ Never commit .env files to GitHub.
+
+🖼️ Screenshots
+
+Add screenshots here
+
+📸 Home Page
+📸 Movie Trailer View
+📸 GPT Movie Search
+📸 Mobile Responsive UI
+
+🚧 Future Improvements
+
+User profiles & watch history
+
+Personalized movie recommendations
+
+Backend with Node.js & MongoDB
+
+Watchlist & favorites feature
+
+Improved AI-based suggestions
+
+👤 Author
+
+Devvrath
+Frontend / MERN Stack Developer
+
+GitHub: https://github.com/your-username
+
+LinkedIn: https://linkedin.com/in/your-profile
+
+⭐ Support
+
+If you like this project, don’t forget to star ⭐ the repository and share it!
